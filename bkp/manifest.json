@@ -1,0 +1,29 @@
+{
+  "manifest_version": 5,
+  "name": "Bombcrypto KingFarm",
+  "version": "1.0",
+  "description": "Intercepta todas as mensagens WebSocket de um site.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "webRequestBlocking",
+    "ws://*/*",
+    "wss://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": ["https://game.bombcrypto.io/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://game.bombcrypto.io/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

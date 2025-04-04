@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <title>Teste</title>
+</head>
+
+<body>
+    <h1>Teste</h1>
+
+    <script>
+
+
+        (async () => {
+            try {
+                // "https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/DcFaEEefLHM3QOdxgXMR6dvrV3j1/c3780ad8-1b61-46a4-b429-4117e62ac137?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20240620%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20240620T145202Z&X-Amz-Expires=43200&X-Amz-Signature=1e48cd9c82ec956812aabb91a90dd9def825f0b5ac4327b58b9d6fe3c9038350&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22teste%20%281%29.wasm%22"
+                var importObject = { imports: { imported_func: arg => console.log(arg) } };
+
+                const response = await fetch("https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/DcFaEEefLHM3QOdxgXMR6dvrV3j1/c3780ad8-1b61-46a4-b429-4117e62ac137?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20240620%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20240620T145202Z&X-Amz-Expires=43200&X-Amz-Signature=1e48cd9c82ec956812aabb91a90dd9def825f0b5ac4327b58b9d6fe3c9038350&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22teste%20%281%29.wasm%22");
+                const arrayBuffer = await response.arrayBuffer();
+
+
+                WebAssembly.instantiate(arrayBuffer, importObject)
+                    .then(obj => obj.instance.exports.exported_func());//output 42 in console
+                console.log("WASM module loaded successfully");
+            } catch (error) {
+                console.error("Error loading WASM module:", error);
+            }
+        })();
+    </script>
+</body>
+
+</html>

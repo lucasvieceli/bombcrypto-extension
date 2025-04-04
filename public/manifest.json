@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "BombStats Bombcript",
+  "version": "1.6",
+  "description": "Extensão para o site bombstats.com.br sincronizar com jogo bombcrypto.io ",
+  "permissions": ["activeTab"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/16x16.png",
+    "48": "icons/48x48.png",
+    "128": "icons/128x128.png"
+  },
+  "host_permissions": ["https://*.bombcrypto.io/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.bombcrypto.io/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.bombcrypto.io/*"],
+      "js": ["second.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/16x16.png",
+      "48": "icons/48x48.png",
+      "128": "icons/128x128.png"
+    }
+  }
+}
